@@ -7,8 +7,8 @@ import Layout from "../components/layout/Layout";
 
 const Todolist = () => {
 
-  const save = localStorage.getItem("data")
-  const savedata = JSON.parse(save)
+  let savedata = (localStorage.getItem('data') === null) ?
+    [] : JSON.parse(localStorage.getItem('data'))
 
   const [list, setList] = useState(savedata);
 
