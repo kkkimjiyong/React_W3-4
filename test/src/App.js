@@ -101,10 +101,6 @@ function App() {
     setPost(initialstate);
   };
 
-  const newlist = list.map((post) => {
-    return <div key={post.id} post={post.body} />;
-  });
-
   console.log(list);
 
   return (
