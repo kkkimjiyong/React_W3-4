@@ -92,7 +92,7 @@ function App() {
 
   const submithandler = (e) => {
     e.preventDefault();
-    if (post.title === "" && post.body === "") {
+    if (post.body === "") {
       alert("비어있어요!");
     } else {
       setNumber(number + 1);
