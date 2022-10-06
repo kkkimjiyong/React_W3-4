@@ -4,10 +4,18 @@ import Form from "../components/form/Form";
 import List from "../components/list/List";
 import Header from "../components/header/Header";
 import Layout from "../components/layout/Layout";
-import styled from "styled-components";
 
 const Todolist = () => {
-  const [list, setList] = useState([]);
+
+  const save = localStorage.getItem("data")
+  const savedata = JSON.parse(save)
+
+  const [list, setList] = useState(savedata);
+
+
+  console.log(savedata)
+
+
   return (
     <Layout>
       <Header />

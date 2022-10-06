@@ -1,13 +1,8 @@
 import "../../App.css";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import styled from "styled-components";
-import Todo from "../todo/Todo";
 import Button from "@mui/material/Button";
 import SendIcon from "@mui/icons-material/Send";
-import { style } from "@mui/system";
-import { CheckBox, ContentPasteOffSharp, RunCircle } from "@mui/icons-material";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox, { checkboxClasses } from "@mui/material/Checkbox";
 import { motion } from "framer-motion";
 
 const FormCtn = styled.form`
@@ -41,7 +36,7 @@ const Input = styled.input`
   padding: 0 12px;
 `;
 
-export default function Form({ list, setList }) {
+export default function Form({ list, setList, setSavelist, savelist }) {
   const initialState = {
     id: 0,
     title: "",
@@ -50,26 +45,40 @@ export default function Form({ list, setList }) {
     check: false,
   };
 
-  const [todo, setTodo] = useState(initialState);
+  const [todo, setTodo] = useState(initialState)
+  const [number, setNumber] = useState(0);
 
   const changehandler = (event) => {
     const { name, value } = event.target;
     //기존값에 덮어씌우는 것.
     //[name]이 title 이니까 앞의 객체에 키값이 title인 속성을 덮어씌움.
-    setTodo({ ...todo, [name]: value });
+    setTodo({ ...todo, [name]: value, id: number });
+
   };
 
+
+
+
+
+
+
   //todo값을 list에 올리는 작업
-  const [number, setNumber] = useState(1);
+
   const submithabdler = (event) => {
-    event.preventDefault();
-    if (todo.title.trim() === "" || todo.body.trim() === "") return;
-    setNumber(number + 1);
-    setList([...list, { ...todo, id: number }]);
-    setTodo(initialState);
-    setStar(true);
-    inputRef.current.focus();
+    event.preventDefault()
+    if (todo.title.trim() === "" || todo.body.trim() === "") {
+      alert("공백은 안됩니다!")
+    } else {
+      setNumber(number + 1);
+      setList(cur => [todo, ...cur]);
+      setTodo(initialState);
+      setStar(true);
+
+    }
+
+
   };
+
 
   //중요도체크작업
   //false면 중요한 일
@@ -78,18 +87,13 @@ export default function Form({ list, setList }) {
     setStar(!star);
     setTodo({ ...todo, check: star });
   };
-  
-  //ref를 이용해, input에 포커스디폴트
-  const inputRef = useRef();
-  useEffect(() => {
-    console.log(inputRef);
-    inputRef.current.focus();
-  }, []);
 
-  //useEffect를 사용하여, 마지막 list의 값이 바뀔때만 랜더링진행
+
+
   useEffect(() => {
-    console.log("run");
+    localStorage.setItem("data", JSON.stringify(list))
   }, [list]);
+
   return (
     <FormCtn name="myform" onSubmit={submithabdler}>
       <Inputarea>
@@ -102,7 +106,7 @@ export default function Form({ list, setList }) {
           제목
         </Inputlabel>
         <Input
-          ref={inputRef}
+          // ref={inputRef}
           maxLength="10"
           onChange={changehandler}
           type="text"
@@ -129,7 +133,7 @@ export default function Form({ list, setList }) {
           id="check"
           type="checkbox"
           checked={star}
-          onClick={checkhandler}
+          onChange={checkhandler}
         />
         <label htmlFor="check">Important?</label>
         <Button

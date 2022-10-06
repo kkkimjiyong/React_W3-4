@@ -1,6 +1,7 @@
 import React from "react";
 import Button from "@mui/material/Button";
 import styled from "styled-components";
+import { motion } from "framer-motion";
 
 const Textbox = styled.div`
   height: 70px;
@@ -17,7 +18,7 @@ const Buttonset = styled.div`
   height: 30px;
   margin-top: 25px;
 `;
-const PostBox = styled.div`
+const PostBox = styled(motion.div)`
   border: 3px solid purple;
   border-radius: 10px;
   padding: 20px;
@@ -34,7 +35,15 @@ const Todobody = styled.div`
 
 const Todo = ({ todo, onDeleteHanlder, onEditHanlder }) => {
   return (
-    <PostBox>
+    <PostBox
+      initial={{ scale: 0 }}
+      animate={{ scale: 1, rotateZ: 360 }}
+      transition={{
+        duration: 1,
+        type: "spring",
+        stiffness: 260,
+        damping: 20,
+      }}>
       <Textbox>
         <TodoTitle key={todo.id}>
           {todo.title}
