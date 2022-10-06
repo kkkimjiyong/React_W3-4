@@ -78,6 +78,7 @@ export default function Form({ list, setList }) {
     setStar(!star);
     setTodo({ ...todo, check: star });
   };
+  
   //ref를 이용해, input에 포커스디폴트
   const inputRef = useRef();
   useEffect(() => {
