@@ -19,12 +19,19 @@ const Buttonset = styled.div`
   margin-top: 25px;
 `;
 const PostBox = styled(motion.div)`
+white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   border: 3px solid purple;
   border-radius: 10px;
   padding: 20px;
   margin-bottom: 20px;
   height: 120px;
   max-width: 300px;
+  :hover {
+    box-shadow: 0 0 5px purple;
+  border: 5px solid purple;
+  }
 `;
 
 const Todobody = styled.div`

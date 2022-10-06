@@ -22,6 +22,7 @@ const Inputlabel = styled(motion.div)`
 `;
 
 const Inputarea = styled.div`
+
   display: flex;
   align-items: center;
   gap: 20px;
@@ -34,6 +35,9 @@ const Input = styled.input`
   height: 40px;
   border-radius: 10px;
   padding: 0 12px;
+  :hover {
+    box-shadow: 0 0 15px purple;
+  }
 `;
 
 export default function Form({ list, setList, setSavelist, savelist }) {
@@ -82,7 +86,7 @@ export default function Form({ list, setList, setSavelist, savelist }) {
 
   //중요도체크작업
   //false면 중요한 일
-  const [star, setStar] = useState(true);
+  const [star, setStar] = useState(false);
   const checkhandler = (event) => {
     setStar(!star);
     setTodo({ ...todo, check: star });
