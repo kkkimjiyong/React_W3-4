@@ -16,41 +16,38 @@ Todolist를 리덕스로 바꾼 버전입니다.
 #### 아래는 폴더를 도식화한 것입니다.   
    
    
-
-> **Hooks** (커스텀훅)
->	> Quoteapi.js (명언랜덤재생)   
-
-=============
-
-> **pages** (페이지 모아놓은곳)
->	> *Detail*
->	>	> Detail.js   
->	> *Main*
->	>	> Main페이지 (부모컴포넌트?)   
->	>	> components (import되는 컴포넌트들)
->	>	>   >form
->	>	>   >   >form.js
->	>	>   >header
->	>	>   >   >header.js
->	>	>   >layout
->	>	>   >   >layout.js
->	>	>   >list
->	>	>   >   >list.js   
+      
+       
    
-
-=============
-
->**redux**
->   >*config* (리덕스 설정과 관련된 파일)
->	>	>configstore.js (Store를 만드는 설정 코드들이 있는 파일)
->   >*modules* (State들의 그룹)
->	>	>todolist.js   
-   
-=============   
-   
->**shared** (페이지이동을 위한)
->   >Router.js
-
+.
+src
+├── Hooks
+|   └──Quoteapi.js
+├── pages
+|   ├── Detail
+|   └── Todolist
+|        ├── Todlist.jsx  
+|        └── components
+|             ├── form/Form.jsx
+|             ├── header/Header.jsx
+|             ├── layout/Layout.jsx
+|             └── list/List.jsx
+├── redux
+|   ├── config
+|        └── configstore.js
+|   └── modules
+|        └── todolist.js
+├── shared
+|    └── Router.js
+├── App.js
+├── App.css
+├── App.test.js
+├── index.css
+├── index.js
+├── jsconfig.json
+├── logo.svg
+├── reportWebVitals.js
+└── setupTests.js
 
 
 

@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 
 import { Addlist } from "../../../../redux/modules/todolist.js";
+import { LocalConvenienceStoreOutlined } from "@mui/icons-material";
 
 
 const FormCtn = styled.form`
@@ -64,7 +65,7 @@ export default function Form({ list, setList }) {
 
   const dispatch = useDispatch();
   const state = useSelector((state) => state.todolist.todolist);
-
+  console.log(state)
   const initialstate = {
     id: 0,
     title: "",
