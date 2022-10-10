@@ -17,14 +17,16 @@ Todolist를 리덕스로 바꾼 버전입니다.
 
 
 
-> Hooks (커스텀훅)
->	> Quoteapi.js (명언랜덤재생)
+> **Hooks** (커스텀훅)
+>	> Quoteapi.js (명언랜덤재생)   
 
-> pages (페이지 모아놓은곳)
->	> Detail
->	>	> Detail.js
->	> Main
->	>	> Main페이지 (부모컴포넌트?)
+=============
+
+> **pages** (페이지 모아놓은곳)
+>	> *Detail*
+>	>	> Detail.js   
+>	> *Main*
+>	>	> Main페이지 (부모컴포넌트?)   
 >	>	> components (import되는 컴포넌트들)
 >	>	>   >form
 >	>	>   >   >form.js
@@ -33,17 +35,21 @@ Todolist를 리덕스로 바꾼 버전입니다.
 >	>	>   >layout
 >	>	>   >   >layout.js
 >	>	>   >list
->	>	>   >   >list.js
+>	>	>   >   >list.js   
 
->redux
->   >config (리덕스 설정과 관련된 파일)
+
+=============
+
+>**redux**
+>   >*config* (리덕스 설정과 관련된 파일)
 >	>	>configstore.js (Store를 만드는 설정 코드들이 있는 파일)
->   >modules (State들의 그룹)
->	>	>todolist.js
+>   >*modules* (State들의 그룹)
+>	>	>todolist.js   
 
->shared (페이지이동을 위한)
+>**shared** (페이지이동을 위한)
 >   >Router.js
 
+=============
 
 
 
