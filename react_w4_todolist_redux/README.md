@@ -21,33 +21,33 @@ Todolist를 리덕스로 바꾼 버전입니다.
    
 ```
 src
-+-- Hooks
-|   +--Quoteapi.js
-+-- pages
-|   +-- Detail
-|   +-- Todolist
-|        +-- Todlist.jsx  
-|        +-- components
-|             +-- form/Form.jsx
-|             +-- header/Header.jsx
-|             +-- layout/Layout.jsx
-|             +-- list/List.jsx
-+-- redux
-|   +-- config
-|        +-- configstore.js
-|   +-- modules
-|        +-- todolist.js
-+-- shared
-|    +-- Router.js
-+-- App.js
-+-- App.css
-+-- App.test.js
-+-- index.css
-+-- index.js
-+-- jsconfig.json
-+-- logo.svg
-+-- reportWebVitals.js
-+-- setupTests.js
+├── Hooks
+|   └──Quoteapi.js
+├── pages
+|   ├── Detail
+|   └── Todolist
+|        ├── Todlist.jsx  
+|        └── components
+|             ├── form/Form.jsx
+|             ├── header/Header.jsx
+|             ├── layout/Layout.jsx
+|             └── list/List.jsx
+├── redux
+|   ├── config
+|        └── configstore.js
+|   └── modules
+|        └── todolist.js
+├── shared
+|    └── Router.js
+├── App.js
+├── App.css
+├── App.test.js
+├── index.css
+├── index.js
+├── jsconfig.json
+├── logo.svg
+├── reportWebVitals.js
+└── setupTests.js
 ```
 
    
