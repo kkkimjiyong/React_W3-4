@@ -7,9 +7,9 @@ Todolist를 리덕스로 바꾼 버전입니다.
 
 ## 가장 크게 페이지폴더안에서 메인과 상세페이지를 나누어보았습니다.
 
-그리고 각 페이지에서만 import된 컴포넌트들은 각 페이지안에서 나누었습니다.
-우연찮게 detail에서는 import된 컴포넌트는 없었습니다.
-만약, 서로 다른 페이지에 공통된 컴포넌트가 import된다면, 따로 common폴더를 만들어 관리할 것입니다.
+그리고 각 페이지에서만 import된 컴포넌트들은 각 페이지안에서 나누었습니다.   
+우연찮게 detail에서는 import된 컴포넌트는 없었습니다.   
+만약, 서로 다른 페이지에 공통된 컴포넌트가 import된다면, 따로 common폴더를    만들어 관리할 것입니다.
 
 
 
@@ -21,13 +21,14 @@ Todolist를 리덕스로 바꾼 버전입니다.
    
 ```
 src
-├── Hooks
+├── Hooks (커스텀훅)
 |   └──Quoteapi.js
-├── pages
-|   ├── Detail
-|   └── Todolist
+├── pages (페이지별)
+|   ├── (common) -> 만약 겹치는 import 컴포넌트가 있다면
+|   ├── Detail (상세페이지)
+|   └── Todolist (메인페이지)
 |        ├── Todlist.jsx  
-|        └── components
+|        └── components (메인페이지 구성 컴포넌트)
 |             ├── form/Form.jsx
 |             ├── header/Header.jsx
 |             ├── layout/Layout.jsx
