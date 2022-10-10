@@ -1,3 +1,21 @@
+Todolist를 리덕스로 바꾼 버전입니다.
+=============
+
+## 가장 크게 페이지폴더안에서 메인과 상세페이지를 나누어보았습니다.
+
+그리고 각 페이지에서만 import된 컴포넌트들은 각 페이지안에서 나누었습니다.
+우연찮게 detail에서는 import된 컴포넌트는 없었습니다.
+만약, 서로 다른 페이지에 공통된 컴포넌트가 import된다면, 따로 common폴더를 만들어 관리할 것입니다.
+
+아래는 폴더를 도식화한 것입니다.
+
+
+
+
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

@@ -1,8 +1,6 @@
 import "../../../../App.css";
 import { useState, useEffect } from "react";
 import styled from "styled-components";
-import Button from "@mui/material/Button";
-import SendIcon from "@mui/icons-material/Send";
 import { motion } from "framer-motion";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -44,37 +42,25 @@ const Input = styled.input`
   }
 `;
 
-const File = styled.label`
-  background-color: purple;
-  color: #fff;
-  text-align: center;
-  padding: 10px 0;
-  height: 20px;
-  width: 120px;
-  border-radius: 20px;
-  cursor: pointer;
-  :hover {
-    box-shadow: 0 0 15px purple;
-  }
+const Postbtn = styled.button`
+margin-left: 150px;
+background-color: #cc00cc;
+border: none;
+border-radius: 15px;
+width: 70px;
+height: 40px;
+font-weight: 700;
+cursor:pointer;
+color: white;
+box-shadow: 0 0 5px purple;
+:hover {
+  color: white;
+  box-shadow: 0 0 15px purple;
+}
+
 `
 
 export default function Form({ list, setList }) {
-
-  const [word, setWord] = useState("")
-
-  //명언 api
-  useEffect(() => {
-    fetch('https://api.adviceslip.com/advice')
-      .then(res => {
-        return res.json()
-      })
-      .then(data => {
-        setWord(data.slip);
-      })
-  }, [])
-
-  console.log(word.advice)
-
 
   const dispatch = useDispatch();
   const state = useSelector((state) => state.todolist.todolist);
@@ -86,9 +72,6 @@ export default function Form({ list, setList }) {
     isDone: false,
     star: true
   }
-
-
-
 
   //Form 컴포넌트에서만 쓰이므로 redux를 사용할 필요가 없다.
   const [todo, setTodo] = useState(initialstate)
@@ -179,22 +162,14 @@ export default function Form({ list, setList }) {
           onChange={checkhandler}
         />
         <label htmlFor="check">Important?</label>
-        <File htmlFor="file">File</File>
         <input
           style={{ display: "none" }}
           type={"file"} id={"file"}></input>
-        <Button
-          style={{
-            color: "purple",
-            marginLeft: "150px",
-            position: "relative",
-          }}
+        <Postbtn
           onClick={submithabdler}
-          variant=""
-          endIcon={<SendIcon />}
         >
           Post
-        </Button>
+        </Postbtn>
       </Inputarea>
     </FormCtn>
   );

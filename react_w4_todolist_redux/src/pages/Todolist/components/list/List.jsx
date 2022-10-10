@@ -38,9 +38,17 @@ white-space: nowrap;
 `;
 
 const Todobody = styled.div`
-  width: 120px;
+  max-width: 120px;
   height: 200px;
   display: flex;
+  flex-direction: column;
+  display: inline-block;
+    width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    white-space: normal;
+
 `;
 
 const Listbox = styled.div`

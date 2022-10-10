@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { useState, useEffect } from "react";
+import Quoteapi from "../../../../Hooks/Quoteapi";
 
 const Topnav = styled.h2`
   margin-left: 30px;
@@ -21,20 +21,9 @@ font-weight: 100;
 `
 
 const Header = () => {
-  const [word, setWord] = useState("")
 
-  //명언 api
-  useEffect(() => {
-    fetch('https://api.adviceslip.com/advice')
-      .then(res => {
-        return res.json()
-      })
-      .then(data => {
-        setWord(data.slip);
-      })
-  }, [])
-
-  // console.log(word.advice)
+  //명언 커스텀훅
+  const word = Quoteapi('https://api.adviceslip.com/advice')
 
   return (
     <Navctn>

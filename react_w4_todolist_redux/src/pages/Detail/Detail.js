@@ -9,6 +9,7 @@ const Layout = styled.div`
   width: 1200px;
   height: 800px;
   display: flex;
+  margin: auto;
 `;
 
 const Textbody = styled.h3`
@@ -20,17 +21,20 @@ const Texttitle = styled.h1`
 `;
 
 const Homebutton = styled.button`
-  margin: auto;
+  margin-top: 150px;
+  margin-left: 240px;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
   min-width: 130px;
-  width: 120px;
-  height: 70px;
-  background-color: purple;
+  width: 80px;
+  height: 40px;
+  background-color: #cc00cc;
   color: white;
   font-weight: 900;
   font-size: large;
+  border-radius: 30px;
+  border: none;
   :hover {
     box-shadow: 0 0 5px purple;
   }
@@ -48,10 +52,20 @@ const Detailbox = styled(motion.div)`
   margin: auto;
   height: 400px;
   width: 600px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  white-space: normal;
   :hover {
     box-shadow: 0 0 5px purple;
     border: 5px solid purple;
   }
+`;
+
+const Detailid = styled.h5`
+  font-weight: 400;
+  display: flex;
+  flex-direction: column;
 `;
 
 const Detail = () => {
@@ -69,7 +83,7 @@ const Detail = () => {
           return (
             <Layout key={todo.id}>
               <Detailbox>
-                <div>{todo.id}</div>
+                <Detailid>{todo.id}</Detailid>
                 <Texttitle>{todo.title}</Texttitle>
                 <Textbody>{todo.body}</Textbody>
                 <Homebutton
@@ -77,7 +91,7 @@ const Detail = () => {
                     navigate("/");
                   }}
                 >
-                  돌아가자
+                  Back
                 </Homebutton>
               </Detailbox>
             </Layout>
