@@ -1,4 +1,4 @@
-import "../../App.css";
+import "../../../../App.css";
 import { useState, useEffect } from "react";
 import styled from "styled-components";
 import Button from "@mui/material/Button";
@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 import { useDispatch, useSelector } from "react-redux";
 
 
-import { Addlist } from "../../redux/modules/todolist.js";
+import { Addlist } from "../../../../redux/modules/todolist.js";
 
 
 const FormCtn = styled.form`
@@ -60,6 +60,21 @@ const File = styled.label`
 
 export default function Form({ list, setList }) {
 
+  const [word, setWord] = useState("")
+
+  //명언 api
+  useEffect(() => {
+    fetch('https://api.adviceslip.com/advice')
+      .then(res => {
+        return res.json()
+      })
+      .then(data => {
+        setWord(data.slip);
+      })
+  }, [])
+
+  console.log(word.advice)
+
 
   const dispatch = useDispatch();
   const state = useSelector((state) => state.todolist.todolist);
@@ -77,7 +92,8 @@ export default function Form({ list, setList }) {
 
   //Form 컴포넌트에서만 쓰이므로 redux를 사용할 필요가 없다.
   const [todo, setTodo] = useState(initialstate)
-  const number = Math.random()
+  const date = new Date();
+  const number = date.toLocaleString()
 
 
   //여기서 todo라는 state는 이 컴포넌트에서만 쓰이므로 usestate를 써도 될듯
@@ -85,7 +101,6 @@ export default function Form({ list, setList }) {
     const { name, value } = event.target;
     //기존값에 덮어씌우는 것.
     //[name]이 title 이니까 앞의 객체에 키값이 title인 속성을 덮어씌움.
-
     setTodo({ ...todo, [name]: value, id: number })
   };
 

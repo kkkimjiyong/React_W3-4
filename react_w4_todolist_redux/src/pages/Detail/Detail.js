@@ -58,14 +58,14 @@ const Detail = () => {
   let navigate = useNavigate();
   const state = useSelector((state) => state.todolist.todolist);
   const param = useParams();
-  console.log(parseInt(Number(param.id)));
+  console.log(param.id);
 
   console.log(param.id);
   //params가 문자였다...
   return (
-    <div>
+    <>
       {state.map((todo) => {
-        if (todo.id === Number(param.id))
+        if (todo.id === param.id)
           return (
             <Layout key={todo.id}>
               <Detailbox>
@@ -83,7 +83,7 @@ const Detail = () => {
             </Layout>
           );
       })}
-    </div>
+    </>
   );
 };
 
