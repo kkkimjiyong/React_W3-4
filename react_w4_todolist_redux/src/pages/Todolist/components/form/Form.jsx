@@ -3,10 +3,12 @@ import { useState, useEffect } from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
 import { useDispatch, useSelector } from "react-redux";
-
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import moment from "moment";
+import 'moment/locale/ko';
 
 import { Addlist } from "../../../../redux/modules/todolist.js";
-import { LocalConvenienceStoreOutlined } from "@mui/icons-material";
 
 
 const FormCtn = styled.form`
@@ -60,12 +62,16 @@ box-shadow: 0 0 5px purple;
 }
 
 `
+const StyledContainer = styled(ToastContainer)`
+font-weight: 700;
+color: black;
+`
 
 export default function Form({ list, setList }) {
 
   const dispatch = useDispatch();
   const state = useSelector((state) => state.todolist.todolist);
-  console.log(state)
+
   const initialstate = {
     id: 0,
     title: "",
@@ -76,7 +82,9 @@ export default function Form({ list, setList }) {
 
   //Form 컴포넌트에서만 쓰이므로 redux를 사용할 필요가 없다.
   const [todo, setTodo] = useState(initialstate)
+  //id값을 날짜로 설정
   const date = new Date();
+  //날짜형식지정
   const number = date.toLocaleString()
 
 
@@ -88,13 +96,14 @@ export default function Form({ list, setList }) {
     setTodo({ ...todo, [name]: value, id: number })
   };
 
-
+  const nowTime = moment(date).format('YYYY-MM-DD HH:mm:ss');
+  console.log(nowTime)
 
   //todo값을 list에 올리는 작업
   const submithabdler = (event) => {
     event.preventDefault()
     if (todo.title.trim() === "" || todo.body.trim() === "") {
-      alert("공백은 안됩니다!")
+      toast("빈 칸은 안됩니다!")
     } else {
       dispatch(Addlist({ ...todo }))
       setTodo(initialstate);
@@ -104,10 +113,14 @@ export default function Form({ list, setList }) {
 
   };
 
+
+
   // 로컬스토리지에 저장
   useEffect(() => {
     localStorage.setItem("data", JSON.stringify(state))
   }, [state]);
+
+
 
   // 중요도체크작업
   // false면 중요한 일
@@ -134,10 +147,10 @@ export default function Form({ list, setList }) {
         </Inputlabel>
         <Input
           // ref={inputRef}
-          maxLength="10"
+          maxLength="15"
           onChange={changehandler}
           type="text"
-          placeholder="제목을 적어주세요 (10자 이내)"
+          placeholder="제목을 적어주세요 (15자 이내)"
           name="title"
           value={todo.title}
         ></Input>
@@ -163,15 +176,13 @@ export default function Form({ list, setList }) {
           onChange={checkhandler}
         />
         <label htmlFor="check">Important?</label>
-        <input
-          style={{ display: "none" }}
-          type={"file"} id={"file"}></input>
         <Postbtn
           onClick={submithabdler}
         >
           Post
         </Postbtn>
       </Inputarea>
+      <StyledContainer />
     </FormCtn>
   );
 }

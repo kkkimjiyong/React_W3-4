@@ -8,6 +8,8 @@ import { useNavigate } from "react-router-dom";
 
 const Textbox = styled.div`
   height: 70px;
+  word-break: break-all;
+
 `;
 const TodoTitle = styled.h2`
   margin: 0 0 15px 0;
@@ -19,17 +21,14 @@ const Buttonset = styled.div`
   min-width: 130px;
   width: 100%;
   height: 30px;
-  margin-top: 25px;
+  margin-top: 55px;
 `;
 const PostBox = styled(motion.div)`
-white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
   border: 3px solid purple;
   border-radius: 10px;
   padding: 20px;
   margin-bottom: 20px;
-  height: 120px;
+  height: 150px;
   max-width: 300px;
   :hover {
     box-shadow: 0 0 5px purple;
@@ -39,16 +38,9 @@ white-space: nowrap;
 
 const Todobody = styled.div`
   max-width: 120px;
-  height: 200px;
   display: flex;
   flex-direction: column;
-  display: inline-block;
-    width: 200px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    white-space: normal;
-
+  display: inline;
 `;
 
 const Listbox = styled.div`
@@ -85,6 +77,14 @@ const Done = styled.div`
   margin: 0 30px;
 `;
 
+const Detailbutton = styled.label`
+position: absolute;
+top: 10px;
+right: 10px;
+cursor: pointer;
+font-size: 15px;
+`
+
 const List = () => {
 
   const navigate = useNavigate();
@@ -112,68 +112,23 @@ const List = () => {
     return todo.isDone === true;
   });
 
+
+  //시간순으로 나열 
+  const Newlist = state.sort((a, b) => {
+    if ((a.id) < (b.id)) return -1;
+    if ((a.id) > (b.id)) return 1;
+    return 0;
+  }
+  )
+
+  // console.log((Newlist[0].id))
+
   return (
     <Listbox>
       <Working>
         <ListTitle>{workinglist.length} 👉 still Working</ListTitle>
-        {state.map((todo) => {
+        {Newlist.map((todo) => {
           if (todo.isDone === false) {
-            return (
-              <PostBox key={todo.id}
-                initial={{ scale: 0 }}
-                animate={{ scale: 1, rotateZ: 360 }}
-                transition={{
-                  duration: 1,
-                  type: "spring",
-                  stiffness: 260,
-                  damping: 20,
-                }}>
-                <Textbox>
-                  <TodoTitle >
-                    {todo.title}
-                    {todo.check ? "" : "🔥"}
-                  </TodoTitle>
-
-                  <Todobody>{todo.body}</Todobody>
-                </Textbox>
-                <Buttonset>
-                  <Button
-                    style={{
-                      backgroundColor: "#cc00cc",
-                    }}
-                    variant="contained"
-                    onClick={() => onDeleteHanlder(todo.id)}
-                  >
-                    {" "}
-                    삭제하기
-                  </Button>
-                  <Button
-                    style={{
-                      backgroundColor: "#654ea3",
-                    }}
-                    onClick={() => onEditHanlder(todo.id)}
-                    variant="contained"
-                  >
-                    {todo.isDone ? "취소" : "완료"}
-                  </Button>
-
-                  {/* 달러표시 까먹지말자. */}
-                  <button onClick={() => {
-                    navigate(`/${todo.id}`);
-                  }} key={todo.id}>
-                    상세페이지</button>
-                </Buttonset>
-              </PostBox>
-            )
-          } else {
-            return null;
-          }
-        })}
-      </Working>
-      <Done>
-        <ListTitle>{donelist.length} 👉 You did!</ListTitle>
-        {state.map((todo) => {
-          if (todo.isDone === true) {
             return (
               <PostBox key={todo.id}
                 initial={{ scale: 0 }}
@@ -213,6 +168,64 @@ const List = () => {
                     {todo.isDone ? "취소" : "완료"}
                   </Button>
                 </Buttonset>
+                <Detailbutton onClick={() => {
+                  navigate(`/${todo.id}`);
+                }} htmlFor="detail">📝Edit</Detailbutton>
+                <input style={{ display: "none" }} id="detail" type={"button"}></input>
+              </PostBox>
+            )
+          } else {
+            return null;
+          }
+        })}
+      </Working>
+      <Done>
+        <ListTitle>{donelist.length} 👉 You did!</ListTitle>
+        {Newlist.map((todo) => {
+          if (todo.isDone === true) {
+            return (
+              <PostBox key={todo.id}
+                initial={{ scale: 0 }}
+                animate={{ scale: 1, rotateZ: 360 }}
+                transition={{
+                  duration: 1,
+                  type: "spring",
+                  stiffness: 260,
+                  damping: 20,
+                }}>
+                <Textbox onClick={() => {
+                  navigate(`/${todo.id}`);
+                }}>
+                  <TodoTitle >
+                    {todo.title}
+                    {todo.check ? "" : "🔥"}
+                  </TodoTitle>
+
+                  <Todobody>{todo.body}</Todobody>
+                </Textbox>
+                <Buttonset>
+                  <Button
+                    style={{
+                      backgroundColor: "#cc00cc",
+                    }}
+                    variant="contained"
+                    onClick={() => onDeleteHanlder(todo.id)}
+                  >
+                    {" "}
+                    삭제하기
+                  </Button>
+                  <Button
+                    style={{
+                      backgroundColor: "#654ea3",
+                    }}
+                    onClick={() => onEditHanlder(todo.id)}
+                    variant="contained"
+                  >
+                    {todo.isDone ? "취소" : "완료"}
+                  </Button>
+
+                </Buttonset>
+
               </PostBox>)
           } else {
             return null;

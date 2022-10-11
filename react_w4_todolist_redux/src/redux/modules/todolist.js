@@ -6,10 +6,12 @@ const initialState = {
       ? []
       : JSON.parse(localStorage.getItem("data")),
 };
+
 //Action creator
 const add_list = "components/form/Form/Add";
 const del_list = "components/list/List/Delete";
 const edit_list = "components/list/List/Edit";
+const edit_detail = "pages/Detail/Detail_edit";
 
 export const Addlist = (payload) => {
   return {
@@ -31,6 +33,14 @@ export const Editlist = (payload) => {
     payload,
   };
 };
+
+export const Editdetail = (payload) => {
+  return {
+    type: edit_detail,
+    payload,
+  };
+};
+
 // 리듀서
 export const todolist = (state = initialState, action) => {
   switch (action.type) {
@@ -57,6 +67,11 @@ export const todolist = (state = initialState, action) => {
           }
         }),
       };
+    case edit_detail:
+      return {
+        todolist: action.payload,
+      };
+
     default:
       return state;
   }
