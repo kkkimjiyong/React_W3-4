@@ -46,16 +46,19 @@ export const todolist = (state = initialState, action) => {
   switch (action.type) {
     case add_list:
       return {
+        ...state,
         todolist: [...state.todolist, action.payload],
       };
     case del_list:
       return {
+        ...state,
         todolist: state.todolist.filter((todo) => {
           return todo.id !== action.payload;
         }),
       };
     case edit_list:
       return {
+        ...state,
         todolist: state.todolist.map((todo) => {
           if (todo.id === action.payload) {
             return {
@@ -69,6 +72,7 @@ export const todolist = (state = initialState, action) => {
       };
     case edit_detail:
       return {
+        ...state,
         todolist: action.payload,
       };
 

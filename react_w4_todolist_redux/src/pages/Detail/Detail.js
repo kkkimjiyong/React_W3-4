@@ -159,7 +159,7 @@ const Detail = () => {
   return (
     <>
       {state.map((todo) => {
-        if (todo.id === param.id && edit == true) {
+        if (todo.id === param.id && edit === true) {
           return (
             <div>
               <Layout key={todo.id}>
