@@ -83,6 +83,7 @@ top: 10px;
 right: 10px;
 cursor: pointer;
 font-size: 15px;
+font-weight: 600;
 `
 
 const List = () => {
