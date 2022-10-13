@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
-import { Deletelist, Editlist } from "../../../../redux/modules/todolist.js";
+import { Deletelist, Editlist } from "../../../../redux/modules/todoSlice.js";
 import Button from "@mui/material/Button";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
@@ -89,7 +89,7 @@ const List = () => {
 
   const navigate = useNavigate();
 
-  const state = useSelector((state) => state.todolist.todolist);
+  const state = useSelector((state) => state.reducer.todolist);
   const dispatch = useDispatch();
 
   const onDeleteHanlder = (todoId) => {

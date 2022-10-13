@@ -8,7 +8,7 @@ import "react-toastify/dist/ReactToastify.css";
 import moment from "moment";
 import 'moment/locale/ko';
 
-import { Addlist } from "../../../../reudx/modules/todoSlice.js"
+import { Addlist } from "../../../../redux/modules/todoSlice.js"
 
 
 const FormCtn = styled.form`
@@ -70,7 +70,8 @@ color: black;
 export default function Form({ list, setList }) {
 
   const dispatch = useDispatch();
-  const state = useSelector((state) => state.todolist.todolist);
+  const state = useSelector((state) => state.reducer.todolist
+  );
 
   const initialstate = {
     id: 0,
@@ -96,23 +97,20 @@ export default function Form({ list, setList }) {
     setTodo({ ...todo, [name]: value, id: number })
   };
 
-  const nowTime = moment(date).format('YYYY-MM-DD HH:mm:ss');
-  console.log(nowTime)
-
   //todo값을 list에 올리는 작업
   const submithabdler = (event) => {
     event.preventDefault()
     if (todo.title.trim() === "" || todo.body.trim() === "") {
       toast("빈 칸은 안됩니다!")
     } else {
-      dispatch(Addlist({ ...todo }))
-      setTodo(initialstate);
+      dispatch(Addlist(todo))
+      setTodo(initialstate)
       setStar(true);
     }
 
 
   };
-
+  console.log(state)
 
 
   // 로컬스토리지에 저장

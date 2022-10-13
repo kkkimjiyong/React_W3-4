@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
-import { Editdetail } from "../../redux/modules/todolist.js";
+import { Editdetail } from "../../redux/modules/todoSlice.js";
 import { toast, ToastContainer } from "react-toastify";
 import { textAlign } from "@mui/system";
 
@@ -113,7 +113,7 @@ const Detailid = styled.h5`
 
 const Detail = () => {
   let navigate = useNavigate();
-  const state = useSelector((state) => state.todolist.todolist);
+  const state = useSelector((state) => state.reducer.todolist);
 
   const param = useParams();
   const dispatch = useDispatch();
