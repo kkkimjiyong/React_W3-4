@@ -4,6 +4,20 @@ Todolist를 리덕스로 바꾼 버전입니다.
 ![ezgif com-gif-maker (4)](https://user-images.githubusercontent.com/113953473/195526870-1e2d5102-708b-4a28-b0c6-370637218e64.gif)
 
 
+   
+   
+   
+## 기존 과제에서 개인적으로 추가한 기능들입니다.
+   
+   
+-명언 api를 이용하여 상단의 명언이 새로고침시마다, 바뀝니다.   
+-로컬스토리지를 이용하여, 새로고침 시에도 데이터가 날라가지 않습니다.   
+-edit버튼을 통하여, 상세페이지에서 수정이 가능합니다.   
+-인풋창 옆의 important 체크박스를 통하여, 중요도체크가 가능합니다. (불표시)   
+-애니메이션 효과를 넣어보았습니다.
+
+
+
 
 
 ## 가장 크게 페이지폴더안에서 메인과 상세페이지를 나누어보았습니다.
@@ -39,7 +53,7 @@ src
 |   ├── config
 |        └── configstore.js
 |   └── modules
-|        └── todolist.js
+|        └── todoSlice.js
 ├── shared
 |    └── Router.js
 ├── App.js

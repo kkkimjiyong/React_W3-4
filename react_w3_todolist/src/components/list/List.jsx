@@ -1,6 +1,8 @@
 import React from "react";
 import Todo from "../todo/Todo";
 import styled from "styled-components";
+import { useSelector, useDispatch } from "react-redux";
+import { Addlist, Editlist } from "../../todoSlice";
 
 const Listbox = styled.div`
   display: flex;
@@ -37,10 +39,14 @@ const Done = styled.div`
 `;
 
 const List = ({ list, setList }) => {
+
+  const state = useSelector(state => state.todos.todolist)
+  const dispatch = useDispatch()
+
   const onDeleteHanlder = (todoId) => {
     //filter함수를 통하여, todoId와 id값이 일치하지 않은 것만 뽑아냄.
     //여기서 인자 todoId는 Todo.js에서 가져온 값
-    const newTodos = list.filter((todo) => {
+    const newTodos = state.filter((todo) => {
       return todo.id !== todoId;
     });
     //그리고 newTodos로 todos의 state를 변경해준다.
@@ -49,21 +55,16 @@ const List = ({ list, setList }) => {
 
   //id값 일치한 것의 isDone 값을 반대로 바꿔준다.
   const onEditHanlder = (todoId) => {
-    const newTodos = list.map((todo) => {
-      if (todoId === todo.id) {
-        return { ...todo, isDone: !todo.isDone };
-      } else {
-        return { ...todo };
-      }
-    });
-    setList(newTodos);
-  };
+    dispatch(Editlist(todoId))
 
-  const workinglist = list.filter((todo) => {
+  };
+  console.log(state)
+
+  const workinglist = state.filter((todo) => {
     return todo.isDone === false;
   });
 
-  const donelist = list.filter((todo) => {
+  const donelist = state.filter((todo) => {
     return todo.isDone === true;
   });
 
@@ -71,7 +72,7 @@ const List = ({ list, setList }) => {
     <Listbox>
       <Working>
         <ListTitle>{workinglist.length} 👉 still Working</ListTitle>
-        {list.map((todo) => {
+        {state.map((todo) => {
           if (todo.isDone === false) {
             return (
               <Todo
@@ -89,7 +90,7 @@ const List = ({ list, setList }) => {
       <Done>
         <ListTitle>{donelist.length} 👉 You did!</ListTitle>
 
-        {list.map((todo) => {
+        {state.map((todo) => {
           if (todo.isDone === true) {
             return (
               <Todo

@@ -4,6 +4,10 @@ import styled from "styled-components";
 import Button from "@mui/material/Button";
 import SendIcon from "@mui/icons-material/Send";
 import { motion } from "framer-motion";
+import store from "../../Store";
+import { Addlist } from "../../todoSlice";
+import { useSelector, useDispatch } from "react-redux";
+
 
 const FormCtn = styled.form`
   border-radius: 10px;
@@ -49,6 +53,8 @@ export default function Form({ list, setList, setSavelist, savelist }) {
     check: false,
   };
 
+
+  const dispatch = useDispatch();
   const [todo, setTodo] = useState(initialState)
   const [number, setNumber] = useState(0);
 
@@ -64,20 +70,19 @@ export default function Form({ list, setList, setSavelist, savelist }) {
 
 
 
-
-
+  const state = useSelector(state => state)
   //todo값을 list에 올리는 작업
-
+  console.log(...state.todos.todolist)
   const submithabdler = (event) => {
     event.preventDefault()
     if (todo.title.trim() === "" || todo.body.trim() === "") {
       alert("공백은 안됩니다!")
     } else {
       setNumber(number + 1);
-      setList(cur => [todo, ...cur]);
+      dispatch(Addlist(todo))
       setTodo(initialState);
       setStar(true);
-
+      console.log(state)
     }
 
 
@@ -93,10 +98,10 @@ export default function Form({ list, setList, setSavelist, savelist }) {
   };
 
 
-
+  //로컬스토리지 저장
   useEffect(() => {
-    localStorage.setItem("data", JSON.stringify(list))
-  }, [list]);
+    localStorage.setItem("data", JSON.stringify(state.todos.todolist))
+  }, [state.todos.todolist]);
 
   return (
     <FormCtn name="myform" onSubmit={submithabdler}>

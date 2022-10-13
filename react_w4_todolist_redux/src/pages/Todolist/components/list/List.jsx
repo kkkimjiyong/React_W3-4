@@ -83,6 +83,7 @@ top: 10px;
 right: 10px;
 cursor: pointer;
 font-size: 15px;
+font-weight: 600;
 `
 
 const List = () => {
@@ -90,6 +91,7 @@ const List = () => {
   const navigate = useNavigate();
 
   const state = useSelector((state) => state.reducer.todolist);
+  const restate = [...state]
   const dispatch = useDispatch();
 
   const onDeleteHanlder = (todoId) => {
@@ -113,8 +115,8 @@ const List = () => {
   });
 
 
-  //시간순으로 나열 
-  const Newlist = state.sort((a, b) => {
+  //시간순으로 나열
+  const Newlist = restate.sort((a, b) => {
     if ((a.id) < (b.id)) return -1;
     if ((a.id) > (b.id)) return 1;
     return 0;
