@@ -1,6 +1,7 @@
 Todolist를 리덕스로 바꾼 버전입니다.
 =============
 
+![ezgif com-gif-maker (4)](https://user-images.githubusercontent.com/113953473/195526870-1e2d5102-708b-4a28-b0c6-370637218e64.gif)
 
 
 

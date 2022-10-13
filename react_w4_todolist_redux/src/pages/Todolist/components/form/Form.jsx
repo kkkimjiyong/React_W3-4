@@ -8,7 +8,7 @@ import "react-toastify/dist/ReactToastify.css";
 import moment from "moment";
 import 'moment/locale/ko';
 
-import { Addlist } from "../../../../redux/modules/todolist.js";
+import { Addlist } from "../../../../reudx/modules/todoSlice.js"
 
 
 const FormCtn = styled.form`

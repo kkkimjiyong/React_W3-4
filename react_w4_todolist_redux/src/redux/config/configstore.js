@@ -1,13 +1,12 @@
 // 원래 있던 코드
-import { createStore } from "redux";
-import { combineReducers } from "redux";
+import { configureStore } from "@reduxjs/toolkit";
 
 // 새롭게 추가한 부분
 import todolist from "../modules/todolist.js";
+import todoSlice from "../modules/todoSlice.js";
 
-const rootReducer = combineReducers({
-  todolist, // <-- 새롭게 추가한 부분
+const store = configureStore({
+  todolist: todoSlice.reducer,
 });
-const store = createStore(rootReducer);
 
 export default store;
